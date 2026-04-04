@@ -1,0 +1,19 @@
+{
+    "description": "Отклоняем выход",
+    "priority": 3,
+    "mode": "whitelist",
+    "trigger_templates": [
+        "templates/menu/btn_decline.png"
+    ],
+    "exit_templates": [
+        "templates/menu/clash.png"
+    ],
+    "allowed_clicks": [
+        {
+            "step_name": "Кнопка Назад",
+            "template": "templates/menu/btn_decline.png",
+            "confidence": 0.8
+        }
+    ],
+    "post_delay_sec": 1.0
+}

@@ -1,0 +1,29 @@
+{
+    "description": "Бой: клик кнопки -> игра мемори 3x3",
+    "priority": 5,
+    "mode": "pipeline",
+    "loop": false,
+    "confidence": 0.8,
+    "trigger_templates": ["templates/fight/logo.png", "templates/fight/logo2.png"],
+    "phases": [
+        {
+            "name": "Клик Бой",
+            "action": "click_once",
+            "templates": ["templates/fight/logo.png", "templates/fight/logo2.png"],
+            "skip_if_near": "templates/menu/clock.png",
+            "skip_near_radius": 400,
+            "post_delay_sec": 2.0,
+            "timeout_sec": 10
+        },
+        {
+            "name": "Карточки",
+            "action": "memory_match",
+            "closed_template": "templates/fight/slot_closed.png",
+            "exit_templates": ["templates/fight/fight_win.png"],
+            "cell_open_delay": 1.0,
+            "cell_close_delay": 1.5,
+            "similarity": 0.7,
+            "timeout_sec": 120
+        }
+    ]
+}

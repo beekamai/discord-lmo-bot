@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Debug
+debug_*.png
+test_capture.png
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# State (resets per session)
+configs/scenarios/state.json
+
+# OS
+Thumbs.db
+.DS_Store

@@ -1,0 +1,20 @@
+{
+    "description": "Спам кнопки Приключение (fallback когда нечего делать)",
+    "priority": 6,
+    "mode": "pipeline",
+    "loop": false,
+    "confidence": 0.8,
+    "trigger_templates": ["templates/menu/adventures_door.png"],
+    "phases": [
+        {
+            "name": "Спам Приключение",
+            "action": "spam_click",
+            "templates": ["templates/menu/adventures_door.png"],
+            "duration_sec": 30,
+            "delay_ms": 105,
+            "ramp_up": [0.3, 0.6, 1.0],
+            "ramp_period_sec": 3.0,
+            "recheck_every": 100
+        }
+    ]
+}

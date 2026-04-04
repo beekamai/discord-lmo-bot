@@ -1,0 +1,147 @@
+{
+    "_comment": "This file documents ALL available scenario modes and their parameters",
+
+    "_mode_1_sequential": {
+        "description": "Strict step-by-step chain",
+        "priority": 10,
+        "mode": "sequential",
+        "run_once": false,
+        "confidence": 0.8,
+        "start_step": 0,
+        "steps": [
+            {
+                "step_name": "Step description (for logs)",
+                "templates": ["templates/buttons/play.png", "templates/buttons/play_alt.png"],
+                "confidence": 0.85,
+                "post_delay_sec": 2.0,
+                "repeats": 3,
+                "offset_x": 0,
+                "offset_y": 10
+            }
+        ]
+    },
+
+    "_mode_2_whitelist": {
+        "description": "Click any allowed button until exit found",
+        "priority": 20,
+        "mode": "whitelist",
+        "run_once": true,
+        "confidence": 0.8,
+        "trigger_templates": ["templates/screen/login.png"],
+        "exit_templates": ["templates/screen/main_menu.png"],
+        "allowed_clicks": [
+            {
+                "step_name": "Accept terms",
+                "template": "templates/buttons/agree.png",
+                "confidence": 0.9
+            }
+        ],
+        "post_delay_sec": 1.5
+    },
+
+    "_mode_3_sequence_click": {
+        "description": "Find ALL occurrences of template, click left-to-right",
+        "priority": 30,
+        "mode": "sequence_click",
+        "trigger_templates": ["templates/arrows/arrow.png"],
+        "exit_templates": ["templates/screen/done.png"],
+        "allowed_clicks": [
+            {
+                "template": "templates/arrows/arrow.png",
+                "confidence": 0.8,
+                "click_delay": 0.3
+            }
+        ],
+        "post_delay_sec": 1.0
+    },
+
+    "_mode_4_spam_click": {
+        "description": "Find button and spam-click it N times",
+        "priority": 40,
+        "mode": "spam_click",
+        "confidence": 0.8,
+        "trigger_templates": ["templates/buttons/attack.png"],
+        "exit_templates": ["templates/screen/defeat.png"],
+        "spam_clicks": 2000,
+        "spam_delay_ms": 50,
+        "spam_recheck_every": 200
+    },
+
+    "_mode_5_pipeline": {
+        "description": "Multi-phase loop: chain different actions together",
+        "priority": 50,
+        "mode": "pipeline",
+        "loop": true,
+        "confidence": 0.8,
+        "trigger_templates": [],
+        "phases": [
+            {
+                "name": "Phase name (for logs)",
+                "action": "spam_click",
+                "templates": ["templates/buttons/go.png"],
+                "duration_sec": 120,
+                "click_count": 0,
+                "delay_ms": 100,
+                "ramp_up": [0.3, 0.6, 1.0],
+                "ramp_period_sec": 3.0,
+                "recheck_every": 200,
+                "exit_templates": ["templates/screen/end.png"],
+                "skip_exit_sec": 3.0,
+                "confidence": 0.8
+            },
+            {
+                "name": "Click once (skip if timer active nearby)",
+                "action": "click_once",
+                "templates": ["templates/buttons/craft.png"],
+                "skip_if_near": "templates/icons/timer.png",
+                "skip_near_radius": 150,
+                "post_delay_sec": 2.0,
+                "timeout_sec": 30,
+                "offset_x": 0,
+                "offset_y": 0,
+                "confidence": 0.9
+            },
+            {
+                "name": "Arrow keys from templates",
+                "action": "send_keys",
+                "key_map": [
+                    {"template": "templates/arrows/left.png", "key": "left"},
+                    {"template": "templates/arrows/right.png", "key": "right"},
+                    {"template": "templates/arrows/up.png", "key": "up"},
+                    {"template": "templates/arrows/down.png", "key": "down"}
+                ],
+                "exit_templates": ["templates/screen/crafted.png"],
+                "scan_delay_sec": 1.0,
+                "key_delay_sec": 0.15,
+                "skip_exit_sec": 3.0,
+                "timeout_sec": 120
+            },
+            {
+                "name": "Wait for screen",
+                "action": "wait_for",
+                "templates": ["templates/screen/ready.png"],
+                "timeout_sec": 60,
+                "post_delay_sec": 0.5
+            },
+            {
+                "name": "Click all left-to-right",
+                "action": "sequence_click",
+                "templates": ["templates/buttons/item.png"],
+                "click_delay": 0.3,
+                "post_delay_sec": 1.0,
+                "timeout_sec": 30
+            },
+            {
+                "name": "Wait for timer to disappear",
+                "action": "wait_disappear",
+                "templates": ["templates/icons/timer.png"],
+                "near_template": "templates/buttons/craft.png",
+                "near_radius": 150,
+                "scan_delay_sec": 3.0,
+                "skip_exit_sec": 5.0,
+                "timeout_sec": 600,
+                "post_delay_sec": 1.0
+            }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "description": "Заходим в игру",
+    "priority": 1,
+    "mode": "sequence_click",
+    "trigger_templates": [
+        "templates/login_game/wampus_logo.png",
+        "templates/login_game/btn_continue.png",
+        "templates/kovka/continue.png"
+    ],
+    "exit_templates": [
+        "templates/menu/adventures_door.png"
+    ],
+    "allowed_clicks": [
+        {
+            "template": "templates/login_game/btn_continue.png",
+            "confidence": 0.8,
+            "click_delay": 0.3
+        },
+        {
+            "template": "templates/kovka/continue.png",
+            "confidence": 0.8,
+            "click_delay": 0.5
+        }
+    ],
+    "post_delay_sec": 1.0
+}

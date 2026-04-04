@@ -1,0 +1,41 @@
+{
+    "description": "Изготовить: клик -> стрелки -> продолжить",
+    "priority": 4,
+    "mode": "pipeline",
+    "loop": false,
+    "confidence": 0.8,
+    "trigger_templates": ["templates/kovka/logo.png", "templates/kovka/logo2.png"],
+    "phases": [
+        {
+            "name": "Клик Изготовить",
+            "action": "click_once",
+            "templates": ["templates/kovka/logo.png", "templates/kovka/logo2.png"],
+            "skip_if_near": "templates/menu/clock.png",
+            "skip_near_radius": 400,
+            "post_delay_sec": 1.0,
+            "confidence": 0.9,
+            "timeout_sec": 10
+        },
+        {
+            "name": "Стрелки",
+            "action": "send_keys",
+            "key_map": [
+                {"template": "templates/kovka/arrow_left.png", "key": "left"},
+                {"template": "templates/kovka/arrow_right.png", "key": "right"},
+                {"template": "templates/kovka/arrow_up.png", "key": "up"},
+                {"template": "templates/kovka/arrow_down.png", "key": "down"}
+            ],
+            "exit_templates": ["templates/kovka/continue.png"],
+            "scan_delay_sec": 0.5,
+            "key_delay_sec": 0.15,
+            "timeout_sec": 120
+        },
+        {
+            "name": "Клик Продолжить",
+            "action": "click_once",
+            "templates": ["templates/kovka/continue.png"],
+            "post_delay_sec": 2.0,
+            "timeout_sec": 15
+        }
+    ]
+}

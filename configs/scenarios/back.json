@@ -1,0 +1,19 @@
+{
+    "description": "Возвращаемся в меню",
+    "priority": 2,
+    "mode": "whitelist",
+    "trigger_templates": [
+        "templates/menu/btn_back.png"
+    ],
+    "exit_templates": [
+        "templates/menu/adventures_door.png"
+    ],
+    "allowed_clicks": [
+        {
+            "step_name": "Кнопка Назад",
+            "template": "templates/menu/btn_back.png",
+            "confidence": 0.93
+        }
+    ],
+    "post_delay_sec": 1.0
+}

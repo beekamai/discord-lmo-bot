@@ -1,0 +1,20 @@
+{
+    "description": "просто спам на дракончика",
+    "priority": 0,
+    "mode": "pipeline",
+    "loop": true,
+    "confidence": 0.8,
+    "trigger_templates": ["templates/menu/clash_with_dragon.png"],
+    "phases": [
+        {
+            "name": "спам на дракончика",
+            "action": "spam_click",
+            "templates": ["templates/menu/clash_with_dragon.png"],
+            "duration_sec": 30,
+            "delay_ms": 105,
+            "ramp_up": [0.3, 0.6, 1.0],
+            "ramp_period_sec": 3.0,
+            "recheck_every": 100
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 opencv-python==4.8.1.78
 numpy==1.26.2
-pillow==10.1.0
+pillow==12.2.0
 pygetwindow==0.0.9
 psutil==5.9.8
